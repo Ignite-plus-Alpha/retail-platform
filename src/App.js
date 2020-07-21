@@ -26,12 +26,11 @@ function App() {
         <Route exact path="/profile" component={Profile} />
         <Route exact path="/wishlist" component={Wishlist} />
         <Route path="/signup" component={Signup} />
+
+        
         <Route exact path="/:groupId" component={CategoryPage} />
         <Route exact path="/:groupId/:categoryId" component={ItemPage} />
-        <Route
-          exact
-          path="/:groupId/:categoryId/:itemId"
-          component={ProductDetailsPage}
+        <Route exact path="/:groupId/:categoryId/:itemId" component={ProductDetailsPage}
         />
       </Switch>
       <Footer />

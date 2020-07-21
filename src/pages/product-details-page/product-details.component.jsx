@@ -19,7 +19,8 @@ class ProductDetailsPage extends React.Component {
             item: '',
             description:'',
              size:[],
-             chosenSize:''
+             chosenSize:'',
+  
                        
         }
     }
@@ -36,7 +37,8 @@ class ProductDetailsPage extends React.Component {
             this.setState({
               item: response.data,
               description:response.data.description,
-              size:response.data.size
+              size:response.data.size,
+              
             });
            
           })
@@ -74,48 +76,42 @@ class ProductDetailsPage extends React.Component {
         case 'grocery':
           return <Grocery description={this.state.description} />;  
           default :
-          return <></>
-        
-          
+          return <></>    
                 
       }
     }
     
 
     render () {  
-
       
-
- console.log(this.state.size)
-
-        
-        return (
-            
-        <div className='product-preview'>                                 
-        <div className="flexbox-container-column">
-          <div className="item-image"><img src={this.state.item.imageUrl} alt="product" style={{ maxWidth: "60%",height:"auto"}} ></img></div>
-          <div className="flexbox-container-row">
-            <div className="item-header">              
-              <div style={{color:"black" ,fontSize:"35px",fontWeight:"bold" ,marginBottom:"2%"}}>{this.state.item.title}</div>
-              <div className="subtitle" style={{color:"gray" ,marginTop:"10px",marginBottom:"10px",fontSize:"15px",fontWeight:"bold"}}>{this.state.groupId }  {this.state.item.categoryId}</div> 
-              <div className="price" style={{color:"teal" ,fontSize:"18px",fontWeight:"bold"}}>Rs. {this.state.item.price}</div>
-              {this.state.size!==null ? (
-              <div className="size">Select size : {this.state.size.map(s=><a class="ui teal circular label" style={{margin:"10px"}} onClick={()=>(this.setState({chosenSize:s}))}>{s}</a>)}</div>
-              ) : <></>}      
-            </div>
-            <div class="ui divider"></div>            
-          <div className="specification-table" style={{width:"500px"}}>{this.renderSwitchCategory(this.state.categoryId)}</div>
-          <div  className="specification-table">{this.renderSwitchGroup(this.state.groupId)} </div>         
-          <span><button class="ui teal button" style={{margin:"7%"}} onClick={()=>{console.log("add to cart")}}> <i class="icon cart" ></i>Add to cart</button></span>
-          </div>
-          {console.log(this.state.chosenSize)}
-        </div>
-
-        
-            </div>
-         
-        )
-
-    }
-}
-export default ProductDetailsPage;
+      console.log(this.state.size)
+             
+             return (
+                 
+             <div className='product-preview'>                                 
+             <div className="flexbox-container-column">
+               <div className="item-image"><img src={this.state.item.imageUrl} alt="product" style={{ maxWidth: "60%",height:"auto"}} ></img></div>
+               <div className="flexbox-container-row">
+                 <div className="item-header">              
+                   <div style={{color:"black" ,fontSize:"35px",fontWeight:"bold" ,marginBottom:"2%"}}>{this.state.item.title}</div>
+                   <div className="subtitle" style={{color:"gray" ,marginTop:"10px",marginBottom:"10px",fontSize:"15px",fontWeight:"bold"}}>{this.state.groupId }  {this.state.item.categoryId}</div> 
+                   <div className="price" style={{color:"teal" ,fontSize:"18px",fontWeight:"bold"}}>Rs. {this.state.item.price}</div>
+                   {this.state.size!==null ? (
+                   <div className="size">Select size : {this.state.size.map(s=><a class="ui teal circular label" style={{margin:"10px"}} onClick={()=>(this.setState({chosenSize:s}))}>{s}</a>)}</div>
+                   ) : <></>}      
+                 </div>
+                 <div class="ui divider"></div>            
+               <div className="specification-table" style={{width:"500px"}}>{this.renderSwitchCategory(this.state.categoryId)}</div>
+               <div  className="specification-table">{this.renderSwitchGroup(this.state.groupId)} </div>         
+               <span><button class="ui teal button" style={{margin:"7%"}} onClick={()=>{console.log("add to cart")}}> <i class="icon cart" ></i>Add to cart</button></span>
+               </div>
+               {console.log(this.state.chosenSize)}
+             </div>
+             
+                 </div>
+              
+             )
+         }
+     }
+     export default ProductDetailsPage;
+     

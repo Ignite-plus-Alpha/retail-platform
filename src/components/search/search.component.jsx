@@ -15,17 +15,23 @@ const styles = (theme) => ({
   root: {
     flexGrow: 1,
     height: 250,
+    marginTop:20,
+    marginLeft:200,
+ 
   },
   input: {
     display: "flex",
-    padding: 0,
+    padding: 5,
+
   },
   valueContainer: {
+    
     display: "flex",
     flexWrap: "wrap",
     flex: 1,
     alignItems: "center",
     overflow: "hidden",
+  
   },
   // chip: {
   //   margin: `${theme.spacing(1 / 2)}px ${theme.spacing(1 / 4)}px`,
