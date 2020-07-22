@@ -1,5 +1,6 @@
 import React from 'react'
 import './profile.styles.scss'
+import { Divider } from '@material-ui/core';
 
 
 
@@ -12,36 +13,48 @@ class Addresses extends React.Component{
         }
         
     }
-    
 
-   handleSignIn=()=>{
-    // AuthenticationService.get()
-    // .then((response) => {
-    // //   this.setState({
-    // //     items: response.data,
-    // //   });
-    // console.log(response.data)
-    // })
-    // .catch((e) => {
-    //   console.log(e);
-    // })
-       
-    }
     render(){
-        if(this.state.currentUser!==null){
-            return(
-                <center>
-                <div className='profilePage'>
-                    <div class="ui secondary vertical pointing menu">
-                       addresses
+        return (
 
-                    </div>
+            <div className="profile-addresses-page" >
+
+                <h2>Saved Addresses</h2>
+                <h5>DEFAULT ADDRESS</h5>
+       
+
+            <div class="ui cards">
+            <div class="card">
+                <div class="content">
+                <p>{this.state.currentUser}</p>
+             
+                <div class="meta">
+                    Friends of Veronika
                 </div>
-                </center>
-            )
-        }
-        else return(
-            <div>Address</div>
+                <div class="description">
+                    Elliot requested permission to view your contact details
+                </div>
+                </div>
+                <div class="extra content">
+                <div className="sign-in-options" style={{display:"flex",flexDirection:"row",justifyContent:"space-around"  }}>
+                <span class="material-icons">
+                    edit
+                    </span>
+                <span class="material-icons">
+                    delete
+                    </span>
+                    
+                </div>
+                   
+               
+                </div>
+            </div>
+
+            <Divider/>
+  
+
+</div>
+</div>
         )
 
 
