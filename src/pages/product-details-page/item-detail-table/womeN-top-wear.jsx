@@ -59,6 +59,7 @@ class WomenTopWear extends Component {
       <td>Transparency</td>
       <td>{this.props.description.transparency}</td>      
     </tr>
+    
   </tbody>
 </table>
 </div>

@@ -1,7 +1,8 @@
 import axios from 'axios'
 
-//product services
+
+//profile services
 export default axios.create({
-    baseURL: "http://localhost:8081",
+    baseURL: "http://localhost:8082/api",
     headers: {"content-type":"application/json"}
 });
