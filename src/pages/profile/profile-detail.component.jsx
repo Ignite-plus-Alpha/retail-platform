@@ -34,13 +34,14 @@ class ProfileDetailPage extends React.Component{
         else return(
             <div style={{display:"flex" ,flexDirection:"row"}}>
                 <div style={{padding:"2%" ,width:"40%"}}>
-                    <h3>I already have an account</h3>
+                <a><h3>I do not have an account</h3></a>
                     <p>Sign in with email and password</p>
                 <SignInForm/>
                 </div>
 
                 <div style={{padding:"2%",width:"50%"}}>
-                <h3>I do not have an account</h3>
+                
+                <a><h3>I already have an account</h3></a>
                     <p>Sign Up with email and password</p>
                 <SignUp/>
                 </div>

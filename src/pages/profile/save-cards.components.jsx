@@ -14,19 +14,6 @@ class SaveCards extends React.Component{
     }
     
 
-   handleSignIn=()=>{
-    // AuthenticationService.get()
-    // .then((response) => {
-    // //   this.setState({
-    // //     items: response.data,
-    // //   });
-    // console.log(response.data)
-    // })
-    // .catch((e) => {
-    //   console.log(e);
-    // })
-       
-    }
     render(){
         if(this.state.currentUser!==null){
             return(
