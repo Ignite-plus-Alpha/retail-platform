@@ -3,10 +3,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { Divider } from '@material-ui/core';
-import EditIcon from '@material-ui/icons/Edit';
+import UpdateProfile from '../Modal/update-profile-form.component';
 
 const useStyles = makeStyles({
   root: {
@@ -17,7 +16,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function SimpleCard({userEmail,firstName,lastName,mobile}) {
+export default function SimpleCard({email,firstName,lastName,mobile}) {
   const classes = useStyles();
 
 
@@ -29,7 +28,7 @@ export default function SimpleCard({userEmail,firstName,lastName,mobile}) {
         </Typography>
         <Divider style={{marginBottom:"3%"}}/>
         <Typography className={classes.pos} color="textSecondary">
-          email&nbsp;:&nbsp;{userEmail}
+          email&nbsp;:&nbsp;{email}
         </Typography>
         <Typography className={classes.pos} color="textSecondary">
         First&nbsp;Name&nbsp;:&nbsp;{firstName}
@@ -42,19 +41,7 @@ export default function SimpleCard({userEmail,firstName,lastName,mobile}) {
         </Typography>
       </CardContent>
       <CardActions>
-      {/* <Button
-        variant="contained"
-        color="primary"
-        className={classes.button}
-        startIcon={<EditIcon />}
-        style={{margin:"3%"}}
-      >
-        EDit
-      </Button> */}
-      <Button variant="outlined" color="primary"
-      startIcon={<EditIcon />}>
-        Primary
-      </Button>
+      <UpdateProfile email={email}/>
       </CardActions>
     </Card>
   );

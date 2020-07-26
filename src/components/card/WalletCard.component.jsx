@@ -22,7 +22,7 @@ const useStyles = makeStyles({
   },
 });
 
-export function WalletCard({currentUserUserId,walletId,cardHolderName,cardNumber,expiryDate,defaultCard}) {
+export function WalletCard({emailId,currentUserUserId,walletId,cardHolderName,cardNumber,expiryDate,defaultCard}) {
   const classes = useStyles();
 
   function GetCardType(number)
@@ -72,6 +72,13 @@ export function WalletCard({currentUserUserId,walletId,cardHolderName,cardNumber
 
 const handleDelete=(currentUserUserId,walletId)=>{
   console.log("deleted for" ,currentUserUserId,"*****",walletId)
+
+  const st=".";
+  if(walletId===defaultCard)
+  ProfileService.setDefaultWalletByEmailId(emailId,st)
+  .then(response=>console.log(response))
+  .catch(e=>console.log(e))
+  
   ProfileService.
   deleteCardByUserIdWalletId(currentUserUserId,walletId)
   .then(response=>console.log(response))
@@ -80,7 +87,7 @@ const handleDelete=(currentUserUserId,walletId)=>{
   })
 }
 const handleEdit=(currentUserUserId,walletId)=>{
-  console.log("edited for" ,currentUserUserId,"*****",walletId)
+  console.log("edited for" ,currentUserUserId,"*****",walletId,"*******",emailId)
 }
 
 

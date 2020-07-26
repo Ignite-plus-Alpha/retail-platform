@@ -17,9 +17,7 @@ class ModalExampleDimmer extends Component {
            
         <Button onClick={this.show('blurring')}>Blurring</Button>
 
-        <Modal dimmer={dimmer} open={open} onClose={this.close} style={{padding:"5%", width:"40%"}}>
-
-      
+        <Modal dimmer={dimmer} open={open} onClose={this.close} style={{padding:"5%", width:"40%"}}>      
           <SignUp/>
 
         </Modal>

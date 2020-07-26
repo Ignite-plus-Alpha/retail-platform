@@ -34,5 +34,29 @@ getAddressesByUserId(userId){
           return http.delete(`/address/${userId}/${addressId}`)
         
         }
+
+
+        //update profile default address by emailId
+        setDefaultAddressByEmailId(emailId,data){
+          return http.put(`/user/address/${emailId}`,data)        
+        }
+      //update profile default wallet by emailId
+       setDefaultWalletByEmailId(emailId,data){
+        return http.put(`/user/wallet/${emailId}`,data)        
+      }
+      //addWallet
+      createWallet(data){
+        return http.post(`/wallet`,data)
+      }
+      //addAddress
+      createAddress(data){
+        return http.post(`/address`,data)
+      }
+      //update profile
+      updateProfile(emailId,data){
+        return http.put(`/user/${emailId}`,data)
+      }
+
+        
 }
 export default new ProfileService();

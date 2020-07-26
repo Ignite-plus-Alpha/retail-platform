@@ -5,6 +5,7 @@ import ProfileDataService from '../../services/profile-service'
 import SignInForm from './signIn.component'
 import SignUp from '../../components/signUp/SignUp.component';
 import SimpleCard from '../../components/card/ProfileDetailCard.component'
+import UpdateProfile from '../../components/Modal/update-profile-form.component';
 
 
 class ProfileDetailPage extends React.Component{
@@ -54,7 +55,7 @@ class ProfileDetailPage extends React.Component{
             
                 <div className='profilePage'>
                  
-                <SimpleCard firstName={firstName} lastName={lastName} mobile={mobile} userEmail={userEmail}/>
+                <SimpleCard email={userEmail} firstName={firstName} lastName={lastName} mobile={mobile} />
                 </div>
                 
             )

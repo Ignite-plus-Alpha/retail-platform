@@ -11,6 +11,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import Chip from '@material-ui/core/Chip';
 import ProfileService from '../../services/profile-service'
 
+
 const useStyles = makeStyles({
   root: {
     minWidth: 10,
@@ -21,11 +22,18 @@ const useStyles = makeStyles({
   },
 });
 
-export function AddressCard({currentUserUserId,addressId,firstName,lastName,mobile,addressLine1,addressLine2,city,state,country,zipcode,defaultAddress}){
+export function AddressCard({emailId,currentUserUserId,addressId,firstName,lastName,mobile,addressLine1,addressLine2,city,state,country,zipcode,defaultAddress}){
   const classes = useStyles();
 
 const handleDelete=(currentUserUserId,addressId)=>{
   console.log("deleted for" ,currentUserUserId,"*****",addressId)
+
+  const st="."
+  if(addressId===defaultAddress)
+  ProfileService.setDefaultAddressByEmailId(emailId,st).
+  then(response=>console.log(response))
+  .catch(e=>console.log(e))
+
   ProfileService.
   deleteAddressByUserIdAddressId(currentUserUserId,addressId)
   .then(response=>console.log(response))
@@ -34,10 +42,8 @@ const handleDelete=(currentUserUserId,addressId)=>{
   })
 }
 const handleEdit=(currentUserUserId,addressId,defaultAddress)=>{
-  console.log("edited for" ,currentUserUserId,"*****",addressId,"*******",defaultAddress)
+  console.log("edited for" ,currentUserUserId,"*****",addressId,"*******",defaultAddress,"*****",emailId)
 }
-
-
 
   return (
       <div>
@@ -66,6 +72,7 @@ const handleEdit=(currentUserUserId,addressId,defaultAddress)=>{
         
         Delete
       </Button>
+    
       <Button variant="outlined" sie="small" color="primary"
       startIcon={<EditIcon />} onClick={()=>handleEdit(currentUserUserId,addressId,defaultAddress)}>
         edit
