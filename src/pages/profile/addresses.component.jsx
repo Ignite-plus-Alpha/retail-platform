@@ -1,6 +1,8 @@
 import React from 'react'
 import './profile.styles.scss'
 import { Divider } from '@material-ui/core';
+import ProfileDataService from '../../services/profile-service'
+import {AddressCard} from '../../components/card/AddressCard.component'
 
 
 
@@ -9,53 +11,85 @@ class Addresses extends React.Component{
     constructor(props) {
         super(props);
         this.state={
-            currentUser:"somya"
+          userEmail:"chinmay@gmail.com",
+            currentUserUserId:"fee623af-3307-4ab6-9362-a4fc35aadf2e",
+            addresses:[],
+            user:null,
+            defaultAddress:'' ,
+            default:'',
+            otherAddresses:''       
+          
         }
         
     }
 
+    componentDidMount(){
+
+        ProfileDataService
+        .getProfileByEmailId(this.state.userEmail)
+        .then((response) => {
+          this.setState({
+            user: response.data,
+            firstName:response.data.first_name,
+            lastName:response.data.last_name,
+            mobile:response.data.mobile,
+            defaultAddress:response.data.default_address            
+            
+          },console.log(response.data));
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+ 
+        ProfileDataService
+        .getAddressesByUserId(this.state.currentUserUserId)
+        .then((response) => {
+          this.setState({
+            addresses: response.data,          
+            
+          });
+        })
+        .catch((e) => {
+          console.log(e);
+        })
+
+
+
+    }
+
     render(){
+        
+        console.log(this.state.addresses)
         return (
+          
 
             <div className="profile-addresses-page" >
-
-                <h2>Saved Addresses</h2>
-                <h5>DEFAULT ADDRESS</h5>
-       
-
-            <div class="ui cards">
-            <div class="card">
-                <div class="content">
-                <p>{this.state.currentUser}</p>
-             
-                <div class="meta">
-                    Friends of Veronika
+                <div className="heading"style={{display:"flex",flexDirection:"row" ,justifyContent:"space-between",marginBottom:"3%" }}>
+                    <span><h2>Saved ADDRESSES</h2></span>
+                    <button class="ui violet basic button"style={{position:"right" ,minWidth:"200px"}}><i className="fa fa-plus"></i><b>ADD NEW ADDRESS</b></button>
                 </div>
-                <div class="description">
-                    Elliot requested permission to view your contact details
-                </div>
-                </div>
-                <div class="extra content">
-                <div className="sign-in-options" style={{display:"flex",flexDirection:"row",justifyContent:"space-around"  }}>
-                <span class="material-icons">
-                    edit
-                    </span>
-                <span class="material-icons">
-                    delete
-                    </span>
-                    
-                </div>
-                   
                
+               
+                <div className="card-list">                    
+                    <h5>DEFAULT ADDRESS</h5>
+     
+                {this.state.addresses.map(address=> {
+                  if(address.address_id===this.state.defaultAddress)
+                  return <AddressCard currentUserUserId={this.state.currentUserUserId} addressId={address.address_id} firstName ={this.state.firstName} lastName ={this.state.lastName} mobile ={this.state.mobile} addressLine1={address.address_line1} addressLine2={address.address_line2} city={address.city} state={address.state} country={address.country} zipcode={address.zipcode} defaultAddress={this.state.defaultAddress}/> 
+                
+                })}
+              <h5>Other ADDRESSES</h5>
+     
+              {this.state.addresses.map(address=> {
+                if(address.address_id!==this.state.defaultAddress)
+                return <AddressCard currentUserUserId={this.state.currentUserUserId} addressId={address.address_id} firstName ={this.state.firstName} lastName ={this.state.lastName} mobile ={this.state.mobile} addressLine1={address.address_line1} addressLine2={address.address_line2} city={address.city} state={address.state} country={address.country} zipcode={address.zipcode} defaultAddress={this.state.defaultAddress}/> 
+              
+              })}
+                  
                 </div>
             </div>
-
-            <Divider/>
-  
-
-</div>
-</div>
         )
+
 
 
     }

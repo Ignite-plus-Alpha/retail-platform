@@ -1,17 +1,43 @@
 import React from 'react'
 import './profile.styles.scss'
+import ProfileDataService from '../../services/profile-service'
 
 import SignInForm from './signIn.component'
 import SignUp from '../../components/signUp/SignUp.component';
+import SimpleCard from '../../components/card/ProfileDetailCard.component'
 
 
 class ProfileDetailPage extends React.Component{
     constructor(props) {
         super(props);
         this.state={
-            currentUser:null
-        }
-        
+            userEmail:"chinmay@gmail.com",
+            user:null,
+            firstName:'',
+            lastName:'',
+            mobile:'',
+
+           
+        }        
+    }
+
+    componentDidMount(){
+        ProfileDataService
+        .getProfileByEmailId(this.state.userEmail)
+        .then((response) => {
+          this.setState({
+            user: response.data,
+            firstName:response.data.first_name,
+            lastName:response.data.last_name,
+            mobile:response.data.mobile,       
+            
+            
+          });
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+      
     }
     
 
@@ -19,16 +45,18 @@ class ProfileDetailPage extends React.Component{
        
     }
     render(){
+
+       const {userEmail,firstName,lastName,mobile} = this.state;
+        console.log(this.state.user)
+        
         if(this.state.currentUser!==null){
             return(
-                <center>
+            
                 <div className='profilePage'>
-                    <div class="ui secondary vertical pointing menu">
-                        profile
-
-                    </div>
+                 
+                <SimpleCard firstName={firstName} lastName={lastName} mobile={mobile} userEmail={userEmail}/>
                 </div>
-                </center>
+                
             )
         }
         else return(

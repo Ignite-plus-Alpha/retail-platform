@@ -79,7 +79,7 @@ export default function VerticalTabs() {
         <Tab label="SaveCards" {...a11yProps(2)} />
       
       </Tabs >
-      <div className="tabs" style={{marginLeft:"5%"}}>
+      <div className="tabs" style={{marginLeft:"5%" ,minWidth:"40%"}}>
       <TabPanel value={value} index={0} >
        <ProfileDetailPage/>
       </TabPanel>
