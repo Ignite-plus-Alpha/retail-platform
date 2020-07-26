@@ -19,16 +19,6 @@ const styles = theme => ({
       
 
 export default class SignUp extends Component {
-//   constructor(props) {
-//     super(props)
-
-//     this.state = {
-      
-//       user: []
-             
-//     }
-    
-// }
 
 state = {
   users: '',
@@ -38,32 +28,7 @@ handleChange = event => {
   this.setState({ users: event.target.value });
 }
 
-// handleSubmit = event => {
-//   event.preventDefault();
-
-//   const user = {
-//     users: this.state.users
-//   };
-
          
-            
-//               Axios.post(`http://localhost:8080/api/user`, {user})
-//         .then(res => {
-            
-//           console.log(res);
-//           console.log(res.data);
-//         })
-//       }
-              
- 
-  //     signinGoogle = () =>{
-  //       Axios.get(`http://localhost:8080/user`)
-  // .then(response => {
-  //   console.log(response.data);
-  //  // this.setState({User: response.data});
-    
-  // });
-  //     }          
     render() {
       
         const { classes } = this.props;
@@ -134,18 +99,13 @@ handleChange = event => {
         
                 </div>
                 
-                <div className="sign-in-options" style={{display:"flex",flexDirection:"row",justifyContent:"space-between" ,marginTop:"3%"  }}>
+                
                 <span  style={{minWidth:"150px"}}>
                 <Button variant="contained" color="primary"  >
                    Sign Up
                  </Button>
                 </span>
-                <span> <button class="ui google plus button" style={{minWidth:"150px"}}>
-                <i class="google  icon"></i>
-                Google SignIn
-                </button>
-                </span>
-                 </div>             
+                     
             </form>
             </div>
         );

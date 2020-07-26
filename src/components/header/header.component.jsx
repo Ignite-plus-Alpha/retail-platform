@@ -22,13 +22,13 @@ export const Header = () => (
         <b>ABOUT US</b>
       </Link>
       <Link to="/cart" className="option icon">
-        <i className="fa fa-shopping-cart"></i>
+        <i className="fa fa-shopping-cart  fa-lg"></i>
       </Link>
       <Link to="/profile" className="option">
-        <i className="fa fa-user"></i>
+        <i className="fa fa-user  fa-lg"></i>
       </Link>
       <Link to="/wishlist" className="option">
-        <i className="fa fa-heart"></i>
+        <i className="fa fa-heart fa-lg"></i>
       </Link>
 
     </div>

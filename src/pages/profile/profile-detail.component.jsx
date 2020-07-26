@@ -4,7 +4,7 @@ import ProfileDataService from '../../services/profile-service'
 
 import SignInForm from './signIn.component'
 import SignUp from '../../components/signUp/SignUp.component';
-import SimpleCard from '../../components/card/ProfileDetailCard.component'
+import ProfileDetailCard from '../../components/card/ProfileDetailCard.component'
 import UpdateProfile from '../../components/Modal/update-profile-form.component';
 
 
@@ -50,12 +50,12 @@ class ProfileDetailPage extends React.Component{
        const {userEmail,firstName,lastName,mobile} = this.state;
         console.log(this.state.user)
         
-        if(this.state.currentUser!==null){
+        if(this.state.userEmail!==null){
             return(
             
                 <div className='profilePage'>
                  
-                <SimpleCard email={userEmail} firstName={firstName} lastName={lastName} mobile={mobile} />
+                <ProfileDetailCard email={userEmail} firstName={firstName} lastName={lastName} mobile={mobile} />
                 </div>
                 
             )

@@ -16,7 +16,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function SimpleCard({email,firstName,lastName,mobile}) {
+export default function ProfileDetailCard({email,firstName,lastName,mobile}) {
   const classes = useStyles();
 
 
@@ -41,7 +41,7 @@ export default function SimpleCard({email,firstName,lastName,mobile}) {
         </Typography>
       </CardContent>
       <CardActions>
-      <UpdateProfile email={email}/>
+      <UpdateProfile email={email} />
       </CardActions>
     </Card>
   );

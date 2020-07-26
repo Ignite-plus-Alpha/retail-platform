@@ -51,7 +51,7 @@ render() {
   const { open, dimmer,firstName,lastName,mobile,password } = this.state;
   return (
     <div>
- <Button onClick={this.show('default')}  variant="outlined" color="primary"
+ <Button onClick={this.show('default')}  variant="outlined" color="teal" style={{margin:"10%" }}
      >
            <i class="edit  icon"></i>
         Edit 
