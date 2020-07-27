@@ -51,11 +51,17 @@ render() {
   const { open, dimmer,firstName,lastName,mobile,password } = this.state;
   return (
     <div>
- <Button onClick={this.show('default')}  variant="outlined" color="teal" style={{margin:"10%" }}
-     >
-           <i class="edit  icon"></i>
+      <Button onClick={this.show('default')}  variant="outlined" color="teal" style={{margin:"10%" }}
+          ><i class="edit  icon"></i>
         Edit 
       </Button>
+
+      {/* <Button variant="outlined" sie="small" color="primary"
+      startIcon={<EditIcon />} onClick={this.show('default')}  style={{margin:"10%" }}>
+        edit
+      </Button> */}
+
+
       <Modal dimmer={dimmer} open={open} onClose={this.close} style={{padding:"3%", width:"35%"}}>      
       <form class="ui form" onSubmit={this.handleSubmit}>
             <h4>Edit Personal details</h4>

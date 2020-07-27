@@ -65,20 +65,18 @@ class Addresses extends React.Component{
               
                 <div className="heading"style={{display:"flex",flexDirection:"row" ,justifyContent:"space-between",marginBottom:"3%" }}>
                     <span><h2>Saved ADDRESSES</h2></span>
-                    <AddAddressModal userId={this.state.currentUserUserId}/>
+                    <AddAddressModal userId={this.state.currentUserUserId} email={this.state.userEmail}/>
                 </div>
                
                
                 <div className="card-list">                    
-                    <h5>DEFAULT ADDRESS</h5>
-     
+                    <h5>DEFAULT ADDRESS</h5>     
                 {this.state.addresses.map(address=> {
                   if(address.address_id===this.state.defaultAddress)
                   return <AddressCard emailId={this.state.userEmail} currentUserUserId={this.state.currentUserUserId} addressId={address.address_id} firstName ={this.state.firstName} lastName ={this.state.lastName} mobile ={this.state.mobile} addressLine1={address.address_line1} addressLine2={address.address_line2} city={address.city} state={address.state} country={address.country} zipcode={address.zipcode} defaultAddress={this.state.defaultAddress}/> 
                 
                 })}
-              <h5>Other ADDRESSES</h5>
-     
+              <h5>Other ADDRESSES</h5>     
               {this.state.addresses.map(address=> {
                 if(address.address_id!==this.state.defaultAddress)
                 return <AddressCard emailId={this.state.userEmail} currentUserUserId={this.state.currentUserUserId} addressId={address.address_id} firstName ={this.state.firstName} lastName ={this.state.lastName} mobile ={this.state.mobile} addressLine1={address.address_line1} addressLine2={address.address_line2} city={address.city} state={address.state} country={address.country} zipcode={address.zipcode} defaultAddress={this.state.defaultAddress}/> 

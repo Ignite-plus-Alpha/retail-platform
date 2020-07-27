@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Button, Modal } from "semantic-ui-react";
 import profileService from "../../services/profile-service";
+import Switch from '@material-ui/core/Switch';
 
 
 class AddAddressModal extends Component {
@@ -14,10 +15,16 @@ class AddAddressModal extends Component {
             city: "",
             state: "",
             country: "",
-            zipcode:""
+            zipcode:"",
+            checkedB:"false"
           };        
     }
+     handleToggleChange = (event) => {
+      this.setState({ [event.target.name]: event.target.checked });
+      console.log( event.target.checked)
+
     
+    };
 
 
   show = (dimmer) => () => this.setState({ dimmer, open: true });
@@ -41,6 +48,11 @@ class AddAddressModal extends Component {
           state:this.state.state,
           country:this.state.country  
         }
+        if(this.state.checkedB===true)
+        console.log("set as deafult",this.props.email)
+        else console.log("no")
+        // profileService.setDefaultAddressByEmailId()
+
         profileService.createAddress(data)
         .then(response=>console.log(response))
         .catch(e=>console.log(e))
@@ -154,6 +166,14 @@ class AddAddressModal extends Component {
                 />
               </div>
             </div>
+            <div>Make default addresss</div>
+            <Switch
+        checked={state.checkedB}
+        onChange={this.handleToggleChange}
+        color="primary"
+        name="checkedB"
+        inputProps={{ 'aria-label': 'primary checkbox' }}
+      />
             <div
               className="action-buttons"
               style={{

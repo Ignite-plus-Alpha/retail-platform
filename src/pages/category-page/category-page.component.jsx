@@ -55,6 +55,7 @@ class CategoryPage extends React.Component {
       <center>
         <div className="collection-preview">
           <div className="title">{this.state.groupId.toUpperCase()}</div>
+          <center>
           <div className="preview">
             {this.state.categories.map((category) => (
               <CategoryItem
@@ -64,6 +65,8 @@ class CategoryPage extends React.Component {
               />
             ))}
           </div>
+          </center>
+        
         </div>
       </center>
     );

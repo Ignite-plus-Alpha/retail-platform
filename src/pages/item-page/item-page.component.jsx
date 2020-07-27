@@ -80,6 +80,7 @@ class ItemPage extends React.Component {
       <center>
         <div className="collection-preview">
           <div className="title">{this.state.categoryId.toUpperCase()}</div>
+          <center>
           <div className="preview">
             {this.state.items.map((item) => (
               <ItemCard
@@ -93,6 +94,7 @@ class ItemPage extends React.Component {
               />
             ))}
           </div>
+          </center>
         </div>
       </center>
     );
