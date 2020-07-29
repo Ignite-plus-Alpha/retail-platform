@@ -1,5 +1,5 @@
 import React from "react";
-import Cart from "./cart.component";
+import Cart from "./cart";
 import { Redirect, withRouter } from "react-router-dom";
 import Axios from "axios";
 
