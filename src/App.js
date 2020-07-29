@@ -3,7 +3,7 @@ import "./App.css";
 import HomePage from "./pages/homepage/homepage.component";
 import Profile from "./pages/profile/profile.component";
 import Wishlist from "./pages/wishlist/wishlist.component";
-import Cart from "./pages/cart/cart.component";
+import Cart from "./pages/cart/cart.directory";
 import { Route, Switch } from "react-router-dom";
 import { Header } from "./components/header/header.component";
 import AboutUs from "./pages/AboutUs/aboutus.component";
