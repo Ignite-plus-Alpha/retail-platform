@@ -1,19 +1,20 @@
 import React, { Component } from 'react'
-import { Button, Modal } from "semantic-ui-react";
+import {  Modal } from "semantic-ui-react";
 import EditIcon from '@material-ui/icons/Edit';
+import Button from '@material-ui/core/Button';
 
 import profileService from "../../services/profile-service";
 
 
-class UpdateProfile extends Component {
+class UpdateProfileForm extends Component {
   constructor(props) {
     super(props);
     this.state={
       open: false,
-      firstName:'',
+      firstName:this.props.firstName,
       lastName:'',
       mobile:'',
-      password:'',
+    
       }
   }
 
@@ -28,6 +29,7 @@ close = () => this.setState({ open: false })
 
     //handleFormSubmit
   handleSubmit= event => {
+   
       event.preventDefault();
       const data={
         first_name:this.state.firstName,
@@ -35,14 +37,13 @@ close = () => this.setState({ open: false })
         mobile:this.state.mobile,
         password:this.state.password,
             
-      }
+      }   
   
       profileService.updateProfile(this.props.email,data)
-      .then(response=>console.log(response))
+      .then(response=>console.log(response.data))
+      .then(this.props.loadData)
       .catch(e=>console.log(e))
-      console.log(this.props.email)
-
-      this.setState({ firstName:'',lastName:'',mobile:'',password:'',open:false})    
+      this.setState({ open:false})    
 
   }
 
@@ -51,15 +52,12 @@ render() {
   const { open, dimmer,firstName,lastName,mobile,password } = this.state;
   return (
     <div>
-      <Button onClick={this.show('default')}  variant="outlined" color="teal" style={{margin:"10%" }}
-          ><i class="edit  icon"></i>
-        Edit 
-      </Button>
+ 
 
-      {/* <Button variant="outlined" sie="small" color="primary"
+      <Button variant="outlined" sie="small" color="primary"
       startIcon={<EditIcon />} onClick={this.show('default')}  style={{margin:"10%" }}>
         edit
-      </Button> */}
+      </Button>
 
 
       <Modal dimmer={dimmer} open={open} onClose={this.close} style={{padding:"3%", width:"35%"}}>      
@@ -113,18 +111,6 @@ render() {
               </div>
             </div>
          
-            <div class=" sixteen wide field">
-                <label>password </label>
-                <input
-                type="password"
-                    name="password"
-                    placeholder="Password"
-                    onChange={this.handleChange}
-                    value={password}
-                    required
-                    >
-                </input>
-              </div>
             <div
               className="action-buttons"
               style={{
@@ -135,14 +121,19 @@ render() {
               }}
             >
               <span style={{ minWidth: "200" }}>
-                <Button positive type='submit' value='Submit Form'>
-                                  Update
+                {/* <Button positive type='submit' value='Submit Form'>
+                  Update
+                </Button> */}
+                <Button variant="contained" color="primary" type='submit' value='Submit Form' >
+                  Update
                 </Button>
               </span>
               <span>
                 {" "}
-                <Button negative onClick={this.close}>
-                  
+                {/* <Button negative onClick={this.close}>                  
+                  Cancel
+                </Button> */}
+                <Button variant="contained" color="secondary" onClick={this.close}>
                   Cancel
                 </Button>
               </span>
@@ -154,4 +145,4 @@ render() {
 }
 }
 
-export default UpdateProfile
+export default UpdateProfileForm

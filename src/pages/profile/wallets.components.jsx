@@ -8,7 +8,7 @@ import {ActionConformationModal} from '../../components/Modal/action-conformatio
 
 
 
-class SaveCards extends React.Component{
+class Wallets extends React.Component{
     constructor(props) {
         super(props);
         this.state={
@@ -27,44 +27,46 @@ class SaveCards extends React.Component{
 
 
     componentDidMount(){
-
-        ProfileDataService
-        .getProfileByEmailId(this.state.email)
-        .then((response) => {
-          this.setState({
-            user: response.data,
-            defaultCard:response.data.default_card,          
-            
-          });
-        })
-        .catch((e) => {
-          console.log(e);
-        });
-  
-        ProfileDataService
-        .getWalletsByUserId(this.state.currentUserUserId)
-        .then((response) => {
-          this.setState({
-            wallets: response.data,      
-            
-          });
-        })
-        .catch((e) => {
-          console.log(e);
-        })
-
+      this.loadProfileData()
+      this.loadWallets()
     }
     
+    loadWallets=()=>{        
+      ProfileDataService
+      .getWalletsByUserId(this.state.currentUserUserId)
+      .then((response) => {
+        this.setState({
+          wallets: response.data,      
+          
+        });
+      })
+      .catch((e) => {
+        console.log(e);
+      })
+    }
+
+    loadProfileData=()=>{
+      ProfileDataService
+      .getProfileByEmailId(this.state.email)
+      .then((response) => {
+        this.setState({
+          user: response.data,
+          defaultCard:response.data.default_card          
+        });
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+    }
 
     render(){
     
         return (
            
-            <div className="profile-addresses-page" >
-            
+            <div className="profile-addresses-page" >            
                 <div className="heading"style={{display:"flex",flexDirection:"row" ,justifyContent:"space-between",marginBottom:"3%" }}>
                     <span><h2>Saved Cards</h2></span>
-                    <AddCardModal UserId={this.state.currentUserUserId}/>
+                    <AddCardModal UserId={this.state.currentUserUserId} email={this.state.email} loadWallets={this.loadWallets}/>
                        </div>  
                  <h5>DEFAULT CARD</h5>     
                 {this.state.wallets.map(wallet=> {
@@ -74,10 +76,8 @@ class SaveCards extends React.Component{
               <h5>Other Cards</h5>     
               {this.state.wallets.map(wallet=>  {
                 if(wallet.wallet_id!==this.state.defaultCard)
-                return <WalletCard emailId={this.state.email} walletId={wallet.wallet_id} currentUserUserId={this.state.currentUserUserId} cardHolderName={wallet.cardholder_name} cardNumber={wallet.card_number} expiryDate={wallet.expiry_date} defaultCard={this.state.defaultCard}/>
+                return <WalletCard loadWallets={this.loadWallets} loadProfileData={this.loadProfileData} emailId={this.state.email} walletId={wallet.wallet_id} currentUserUserId={this.state.currentUserUserId} cardHolderName={wallet.cardholder_name} cardNumber={wallet.card_number} expiryDate={wallet.expiry_date} defaultCard={this.state.defaultCard}/>
               })}         
-
-               
             </div>
         )
       
@@ -85,4 +85,4 @@ class SaveCards extends React.Component{
 
     }
 } 
-export default SaveCards
+export default Wallets

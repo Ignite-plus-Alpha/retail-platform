@@ -56,6 +56,10 @@ getAddressesByUserId(userId){
       updateProfile(emailId,data){
         return http.put(`/user/${emailId}`,data)
       }
+      //update Wallet Expiry
+      updateWalletExpiry(userId,walletId,data){
+        return http.put(`/wallet/${userId}/${walletId}`,data)
+      }
 
         
 }

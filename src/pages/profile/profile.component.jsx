@@ -7,7 +7,7 @@ import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import Addresses from './addresses.component'
 import ProfileDetailPage from './profile-detail.component'
-import SaveCards from './save-cards.components'
+import Wallets from './wallets.components'
 import './profile.styles.scss'
 
 function TabPanel(props) {
@@ -56,7 +56,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function VerticalTabs() {
+export default function Profile() {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
@@ -88,7 +88,7 @@ export default function VerticalTabs() {
        <Addresses/>
       </TabPanel>
       <TabPanel value={value} index={2}>
-       <SaveCards/>
+       <Wallets/>
       </TabPanel>
       </div>    
 

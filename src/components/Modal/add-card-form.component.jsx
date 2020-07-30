@@ -10,10 +10,8 @@ class AddCardModal extends Component {
             cardHolderName: "",
             cardNumber: "",
             expirydate:"",
-            upiid:"",
-                                    
-        }
-        
+            upiid:"",                                    
+        }        
     }
     
 
@@ -39,6 +37,7 @@ close = () => this.setState({ open: false })
       }
       profileService.createWallet(data)
       .then(response=>console.log(response))
+      .then(this.props.loadWallets)
       .catch(e=>console.log(e))
 
       this.setState({ cardHolderName:'',cardNumber:'',upiid:'',expirydate:'',open:false})

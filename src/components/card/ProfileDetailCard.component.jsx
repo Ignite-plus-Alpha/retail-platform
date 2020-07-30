@@ -5,7 +5,7 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import { Divider } from '@material-ui/core';
-import UpdateProfile from '../Modal/update-profile-form.component';
+import UpdateProfileForm from '../Modal/update-profile-form.component';
 
 const useStyles = makeStyles({
   root: {
@@ -16,7 +16,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function ProfileDetailCard({email,firstName,lastName,mobile}) {
+export default function ProfileDetailCard({email,firstName,lastName,mobile,loadData}) {
   const classes = useStyles();
 
 
@@ -41,7 +41,7 @@ export default function ProfileDetailCard({email,firstName,lastName,mobile}) {
         </Typography>
       </CardContent>
       <CardActions>
-      <UpdateProfile email={email} />
+      <UpdateProfileForm email={email} loadData={loadData} firstName={firstName}/>
       </CardActions>
     </Card>
   );

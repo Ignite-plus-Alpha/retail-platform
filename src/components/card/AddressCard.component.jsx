@@ -10,6 +10,7 @@ import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
 import Chip from '@material-ui/core/Chip';
 import ProfileService from '../../services/profile-service'
+import UpdateAddressForm from '../Modal/update-address-form.component';
 
 
 const useStyles = makeStyles({
@@ -22,7 +23,7 @@ const useStyles = makeStyles({
   },
 });
 
-export function AddressCard({emailId,currentUserUserId,addressId,firstName,lastName,mobile,addressLine1,addressLine2,city,state,country,zipcode,defaultAddress}){
+export function AddressCard({ loadAddresses,emailId,currentUserUserId,addressId,firstName,lastName,mobile,addressLine1,addressLine2,city,state,country,zipcode,defaultAddress}){
   const classes = useStyles();
 
 const handleDelete=(currentUserUserId,addressId)=>{
@@ -30,17 +31,23 @@ const handleDelete=(currentUserUserId,addressId)=>{
 
   const st="."
   if(addressId===defaultAddress)
-  ProfileService.setDefaultAddressByEmailId(emailId,st).
-  then(response=>console.log(response))
+  ProfileService.setDefaultAddressByEmailId(emailId,st)
+  .then(response=>console.log(response))
   .catch(e=>console.log(e))
 
   ProfileService.
   deleteAddressByUserIdAddressId(currentUserUserId,addressId)
   .then(response=>console.log(response))
+  .then(loadAddresses)
   .catch(e=>{
     console.log(e)
   })
 }
+
+
+
+
+
 const handleEdit=(currentUserUserId,addressId,defaultAddress)=>{
   console.log("edited for" ,currentUserUserId,"*****",addressId,"*******",defaultAddress,"*****",emailId)
 }
@@ -48,18 +55,17 @@ const handleEdit=(currentUserUserId,addressId,defaultAddress)=>{
   return (
       <div>
     
-    <Card className={classes.root}>              
-       
+    <Card className={classes.root}>            
       <CardContent>
       <Typography variant="h5"  style={{marginBottom:"2%"}}>
      {defaultAddress===addressId?  <Chip  size="small" label="Default"  float="right" />:null} Address Details     
-            </Typography>
+        </Typography>
        <Divider style={{marginBottom:"1%"}}/>         
       <Typography className={classes.pos} color="textSecondary">
        {firstName}&nbsp;{lastName} 
        </Typography>
        <Typography className={classes.pos} color="textSecondary">
-       {addressLine1}&nbsp;{addressLine2}<br/>{city},&nbsp;{state},&nbsp;{country}&nbsp;{zipcode}
+       {addressLine1}&nbsp;{addressLine2}<br/>{city},&nbsp;{state},&nbsp;{country}<br/>zipcode : {zipcode}
        </Typography>
        <Typography className={classes.pos} color="textSecondary">
        mobile : {mobile}
@@ -68,15 +74,12 @@ const handleEdit=(currentUserUserId,addressId,defaultAddress)=>{
       <CardActions>
       <div className= "optionButtons" style={{display:"flex",flexDirection:"row",justifyContent:"space-between"  ,minWidth:"100%",padding:"1%" }}>
         <Button variant="outlined" color="secondary"
-       startIcon={<DeleteIcon />}  onClick={()=>handleDelete(currentUserUserId,addressId)}>
-        
+       startIcon={<DeleteIcon />}  onClick={()=>handleDelete(currentUserUserId,addressId)}>        
         Delete
       </Button>
     
-      <Button variant="outlined" sie="small" color="primary"
-      startIcon={<EditIcon />} onClick={()=>handleEdit(currentUserUserId,addressId,defaultAddress)}>
-        edit
-      </Button>
+      <UpdateAddressForm loadAddresses={loadAddresses} userId={currentUserUserId} addressId={addressId} />
+       
   
       </div>
     
