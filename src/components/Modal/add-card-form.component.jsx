@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Button, Header, Image, Modal } from 'semantic-ui-react'
 import profileService from "../../services/profile-service";
+import Switch from '@material-ui/core/Switch';
 
 class AddCardModal extends Component {
     constructor(props) {
@@ -10,7 +11,9 @@ class AddCardModal extends Component {
             cardHolderName: "",
             cardNumber: "",
             expirydate:"",
-            upiid:"",                                    
+            upiid:"",  
+            checkedA:"false" ,
+            cardId:'',                                 
         }        
     }
     
@@ -19,6 +22,13 @@ class AddCardModal extends Component {
 
 show = (dimmer) => () => this.setState({ dimmer, open: true })
 close = () => this.setState({ open: false })
+handleToggleChange = (event) => {
+  this.setState({ [event.target.name]: event.target.checked });
+
+
+
+};
+
 
     //handle field change
     handleChange = event  => {
@@ -35,20 +45,31 @@ close = () => this.setState({ open: false })
         userid:this.props.UserId,
         upi_id:this.state.upiid,
       }
+
+      // profileService.createWallet(data)
+      // .then(response=>console.log(response.data))
+      // .then(this.props.loadWallets)
+      // .catch(e=>console.log(e))
+
+
       profileService.createWallet(data)
-      .then(response=>console.log(response))
-      .then(this.props.loadWallets)
+      .then(response=>this.setState({cardId:response.data.wallet_id}))
+      .then(()=>{    
+        console.log(this.props.email,this.state.cardId)    
+        if( this.state.checkedA===true){ 
+          profileService.setDefaultWalletByEmailId(this.props.email,this.state.cardId)         
+          .then(response=>console.log(response))
+          .then(this.props.loadWallets)
+         .catch(e=>console.log(e))
+        }
+      })
       .catch(e=>console.log(e))
-
-      this.setState({ cardHolderName:'',cardNumber:'',upiid:'',expirydate:'',open:false})
-      
-
-
+      this.setState({ cardHolderName:'',cardNumber:'',upiid:'',expirydate:'',open:false}) 
   }
 
 
 render() {
-  const { open, dimmer,cardHolderName,cardNumber,upiid,expirydate } = this.state;
+  const { open, dimmer,cardHolderName,cardNumber,checkedB,upiid,expirydate } = this.state;
 
   
 
@@ -121,6 +142,14 @@ render() {
               </div>
   
             </div>
+            <div>Make default Wallet</div>
+            <Switch
+            checked={checkedB}
+            onChange={this.handleToggleChange}
+            color="primary"
+            name="checkedA"
+            inputProps={{ 'aria-label': 'primary checkbox' }}
+          />
             <div
               className="action-buttons"
               style={{
@@ -132,7 +161,6 @@ render() {
             >
               <span style={{ minWidth: "150px" }}>
                 <Button positive type='submit' value='Submit Form'>
-                  <i class="add  icon"></i>
                   Add
                 </Button>
               </span>
@@ -143,7 +171,6 @@ render() {
                   style={{ minWidth: "120px" }}
                   onClick={this.close}
                 >
-                  <i class="delete  icon"></i>
                   Cancel
                 </button>
               </span>

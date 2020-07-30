@@ -1,10 +1,9 @@
 import React from 'react'
 import './profile.styles.scss'
-import { Divider } from '@material-ui/core';
 import ProfileDataService from '../../services/profile-service'
 import {WalletCard} from '../../components/card/WalletCard.component'
 import AddCardModal from '../../components/Modal/add-card-form.component'
-import {ActionConformationModal} from '../../components/Modal/action-conformation-modal.component'
+
 
 
 
@@ -79,10 +78,7 @@ class Wallets extends React.Component{
                 return <WalletCard loadWallets={this.loadWallets}  emailId={this.state.email} walletId={wallet.wallet_id} currentUserUserId={this.state.currentUserUserId} cardHolderName={wallet.cardholder_name} cardNumber={wallet.card_number} expiryDate={wallet.expiry_date} defaultCard={this.state.defaultCard}/>
               })}         
             </div>
-        )
-      
-
-
+        )  
     }
 } 
 export default Wallets

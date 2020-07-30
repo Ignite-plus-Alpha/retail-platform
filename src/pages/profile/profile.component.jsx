@@ -80,7 +80,7 @@ export default function Profile() {
         <Tab label="SaveCards" {...a11yProps(2)} />
       
       </Tabs >
-      <div className="tabs" style={{marginLeft:"5%" ,minWidth:"40%"}}>
+      <div className="tabs" style={{marginLeft:"5%" ,minWidth:"25%"}}>
       <TabPanel value={value} index={0} >
        <ProfileDetailPage/>
       </TabPanel>

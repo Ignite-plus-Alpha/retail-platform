@@ -6,7 +6,6 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { Divider } from '@material-ui/core';
-import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
 import Chip from '@material-ui/core/Chip';
 import ProfileService from '../../services/profile-service'
@@ -29,11 +28,11 @@ export function AddressCard({ loadAddresses,emailId,currentUserUserId,addressId,
 const handleDelete=(currentUserUserId,addressId)=>{
   console.log("deleted for" ,currentUserUserId,"*****",addressId)
 
-  const st="."
-  if(addressId===defaultAddress)
-  ProfileService.setDefaultAddressByEmailId(emailId,st)
-  .then(response=>console.log(response))
-  .catch(e=>console.log(e))
+  // const st="."
+  // if(addressId===defaultAddress)
+  // ProfileService.setDefaultAddressByEmailId(emailId,st)
+  // .then(response=>console.log(response))
+  // .catch(e=>console.log(e))
 
   ProfileService.
   deleteAddressByUserIdAddressId(currentUserUserId,addressId)

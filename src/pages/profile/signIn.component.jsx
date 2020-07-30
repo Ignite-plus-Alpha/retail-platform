@@ -5,7 +5,7 @@ import Button from '@material-ui/core/Button';
 class SignInForm extends React.Component{
     render(){
         return(
-                   <div className="sign-in-form">  
+                   <div className="sign-in-form" >  
             <form class="ui form" >
                 <div class="field">
                     <label>Email</label>
@@ -18,7 +18,7 @@ class SignInForm extends React.Component{
                 
                 
                 <div className="sign-in-options" style={{display:"flex",flexDirection:"row",justifyContent:"space-between" ,marginTop:"3%"  }}>
-                <span  style={{minWidth:"150px"}}>
+                <span  >
                 <Button variant="contained" color="primary"  >
                    Sign In
                  </Button>
