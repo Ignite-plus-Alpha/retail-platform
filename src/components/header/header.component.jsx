@@ -10,17 +10,11 @@ export const Header = () => (
       <img
         src={image}
         alt="logo"
-        style={{ height: "50px", marginLeft: "70px" }}
+        style={{ height: "70px", marginLeft: "70px" }}
       />
     </Link>
     <Search />
     <div className="options">
-      <Link to="/contact" className="option">
-        <b>CONTACT</b>
-      </Link>
-      <Link to="/aboutus" className="option">
-        <b>ABOUT US</b>
-      </Link>
       <Link to="/cart" className="option icon">
         <i className="fa fa-shopping-cart"></i>
       </Link>

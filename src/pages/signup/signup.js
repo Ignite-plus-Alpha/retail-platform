@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import TextField from "@material-ui/core/TextField";
-import "./signup.css";
 import Button from "@material-ui/core/Button";
 import Axios from "axios";
-// import Login from "../login/login.component";
+import Login from "../../components/login/login.component";
+
 const styles = (theme) => ({
   button: {
     display: "flex",
@@ -58,14 +58,14 @@ export default class SignUp extends Component {
   render() {
     const { classes } = this.props;
     return (
-      <form>
-        <h3>Sign Up</h3>
-
+      <form align="center">
+        <div style={{ fontSize: 28 }}>Sign Up</div>
+        <br />
         <div className="form-group">
           <TextField
             id="fName"
             label="First Name"
-            style={{ margin: 8 }}
+            style={{ margin: 8, width: 200 }}
             placeholder="Enter first name"
             inputtype="password"
             helperText="Mandotary"
@@ -79,7 +79,7 @@ export default class SignUp extends Component {
           <TextField
             id="lName"
             label="Lastname"
-            style={{ margin: 8 }}
+            style={{ margin: 8, width: 200 }}
             placeholder="Enter your lastname"
             helperText="Mandotary"
             // fullWidth
@@ -93,10 +93,10 @@ export default class SignUp extends Component {
           <TextField
             id="email"
             label="Email"
-            style={{ margin: 8 }}
+            style={{ margin: 8, width: 420 }}
             placeholder="Enter email address"
             helperText="Mandotary"
-            // fullWidth
+            //fullWidth
             margin="normal"
             variant="outlined"
             InputLabelProps={{
@@ -107,7 +107,7 @@ export default class SignUp extends Component {
           <TextField
             id="mobile"
             label="Phone number"
-            style={{ margin: 8 }}
+            style={{ margin: 8, width: 420 }}
             placeholder="Enter phone number"
             helperText="Mandotary"
             // fullWidth
@@ -121,7 +121,7 @@ export default class SignUp extends Component {
           <TextField
             id="standard-password-input"
             label="Password"
-            style={{ margin: 8 }}
+            style={{ margin: 8, width: 420 }}
             // fullWidth
             type="password"
             helperText="Mandatory"
@@ -133,6 +133,7 @@ export default class SignUp extends Component {
           <Button
             variant="contained"
             color="primary"
+            style={{ margin: 8, width: 420 }}
             onClick={
               (this.handleSubmit, (event) => (window.location = "./login"))
             }
@@ -142,13 +143,14 @@ export default class SignUp extends Component {
           <div />
           <br></br>
           <Button
+            style={{ margin: 8, width: 420 }}
             variant="contained"
             color="primary"
             onClick={this.signinGoogle}
           >
             Sign in with Google
           </Button>
-          &nbsp;&nbsp;&nbsp;&nbsp;
+          <br />
           <a href="/login">Already registered?</a>
         </div>
       </form>

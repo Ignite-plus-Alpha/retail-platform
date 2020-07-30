@@ -10,11 +10,15 @@ import MenuItem from "@material-ui/core/MenuItem";
 import { emphasize } from "@material-ui/core/styles/colorManipulator";
 import axios from "axios";
 import { withRouter } from "react-router-dom";
+import { capitalize } from "@material-ui/core";
 
 const styles = (theme) => ({
   root: {
     flexGrow: 1,
     height: 250,
+    marginTop: 25,
+    marginLeft: 100,
+    textTransform: "capitalize",
   },
   input: {
     display: "flex",
@@ -27,17 +31,7 @@ const styles = (theme) => ({
     alignItems: "center",
     overflow: "hidden",
   },
-  // chip: {
-  //   margin: `${theme.spacing(1 / 2)}px ${theme.spacing(1 / 4)}px`,
-  // },
-  // chipFocused: {
-  //   backgroundColor: emphasize(
-  //     theme.palette.type === "light"
-  //       ? theme.palette.grey[300]
-  //       : theme.palette.grey[700],
-  //     0.08
-  //   ),
-  // },
+
   noOptionsMessage: {
     padding: `${theme.spacing(1)}px ${theme.spacing(2)}px`,
   },
@@ -225,6 +219,7 @@ class Search extends React.Component {
         <Select
           classes={classes}
           styles={selectStyles}
+          fullWidth
           options={this.state.suggestions.map((suggestion) => ({
             label: `${suggestion.categoryId} from ${suggestion.groupId}`,
             value: suggestion,

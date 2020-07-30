@@ -1,10 +1,9 @@
 import "./cart.styles.scss";
-import Button from "@material-ui/core/Button";
 import React, { Component } from "react";
 import Axios from "axios";
 import Card from "./cart.card";
-import { Link } from "react-router-dom";
-import { Typography } from "@material-ui/core";
+import { Link, Redirect } from "react-router-dom";
+import Button from "@material-ui/core/Button";
 
 export default class CartPage extends Component {
   constructor(props) {
@@ -15,9 +14,10 @@ export default class CartPage extends Component {
       cartItems: [],
       total_price: 0,
       total_quantity: 0,
+      isLoaded: false,
+      isCheckoutClicked: false,
     };
     this.getCartItems = this.getCartItems.bind(this);
-    this.updateCartItems = this.updateCartItems.bind(this);
   }
 
   componentDidMount = () => {
@@ -36,6 +36,7 @@ export default class CartPage extends Component {
           cartItems: response.data.cartItems,
           total_price: response.data.total_price,
           total_quantity: response.data.total_quantity,
+          isLoaded: true,
         });
       })
       .catch((e) => {
@@ -43,46 +44,63 @@ export default class CartPage extends Component {
       });
   };
 
-  updateCartItems(item) {
-    var i = this.state.cartItems.indexOf(item);
-    var cartItems = this.state.cartItems;
-    cartItems.splice(i, 1);
-    this.setState({ cartItems: cartItems });
-  }
+  checkoutClicked = () => {
+    this.setState({ isCheckoutClicked: true });
+  };
 
   render() {
-    if (this.state.total_quantity === 0)
+    if (this.state.isCheckoutClicked)
       return (
-        <div>
-          <center>
-            <img src="https://www.scholarswing.in/resources/images/empty-cart.png" />
-            <h1>
-              OOPS nothing found in your cart!!! <br />
-              Add Items
-              <br />
-              <Link to="/">SHOP HERE</Link>
-            </h1>
-          </center>
+        <Redirect
+          push
+          to={{
+            pathname: "/confirmation",
+            state: {
+              total_price: this.state.total_price,
+              total_quantity: this.state.total_quantity,
+            },
+          }}
+        />
+      );
+    if (this.state.isLoaded && this.state.total_quantity === 0)
+      return (
+        <div className="Item">
+          <div className="NoItem">
+            <center>
+              <img src="https://www.scholarswing.in/resources/images/empty-cart.png" />
+              <h3>OOPS nothing found in your Cart!!! </h3>
+              <h1>
+                <Link to="/">SHOP HERE</Link>
+              </h1>
+            </center>
+          </div>
+        </div>
+      );
+    if (this.state.isLoaded)
+      return (
+        <div className="Item">
+          SHOPPING CART
+          <br />
+          <br />
+          {this.state.cartItems.map((item, index) => (
+            <Card key={index} item={item} getCartItems={this.getCartItems} />
+          ))}
+          <h1>Total Price:₹{this.state.total_price}</h1>
+          <br />
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={this.checkoutClicked}
+          >
+            CHECKOUT
+          </Button>
         </div>
       );
     return (
-      <div className="ItemTable">
-        <br></br>
-        <Typography variant="h5" component="h2" style={{ marginBottom: "2%" }}>
-          Shopping Cart
-        </Typography>
-        {this.state.cartItems.map((item, index) => (
-          <Card key={index} item={item} getCartItems={this.getCartItems} />
-        ))}
-        <h1>Total Price:₹{this.state.total_price}</h1>
-        <br />
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={() => console.log("proceed to payment")}
-        >
-          CHECKOUT
-        </Button>
+      <div className="Item">
+        <center>
+          <img src="https://miro.medium.com/max/882/1*9EBHIOzhE1XfMYoKz1JcsQ.gif" />
+        </center>
       </div>
     );
   }

@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
@@ -43,7 +42,6 @@ class Card extends Component {
   }
 
   updateQuantity(itemId, itemSize, itemQuantity, operation) {
-    alert("updating");
     if (operation === 1) itemQuantity = itemQuantity + 1;
     else itemQuantity = itemQuantity - 1;
     console.log(localStorage.getItem("cartId"), itemId, itemSize, itemQuantity);
@@ -63,8 +61,6 @@ class Card extends Component {
   }
 
   deleteItem(itemId, itemSize) {
-    alert("deleting");
-
     Axios.delete(
       `http://localhost:8081/cartItem/${localStorage.getItem(
         "cartId"
@@ -110,7 +106,7 @@ class Card extends Component {
                     <Typography gutterBottom>
                       {item.itemGroup} {item.itemCategory}
                     </Typography>
-                    <Typography>{item.itemId}</Typography>
+                    <Typography>{item.itemId.toLowerCase()}</Typography>
                     <Typography>Size:{item.itemSize.toUpperCase()}</Typography>
                     <Typography>
                       <IconButton
@@ -123,7 +119,8 @@ class Card extends Component {
                               item.itemQuantity,
                               1
                             );
-                          else alert("not allowed.reached maximum");
+                          else
+                            alert("Item Quantity has already reached maximum");
                         }}
                       >
                         <AddIcon />
@@ -153,7 +150,6 @@ class Card extends Component {
                     <Typography
                       style={{ cursor: "pointer" }}
                       onClick={() => {
-                        alert("remove");
                         this.deleteItem(item.itemId, item.itemSize);
                       }}
                     >

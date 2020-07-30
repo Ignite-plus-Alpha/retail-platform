@@ -3,7 +3,7 @@ import productService from "../../services/product-service";
 import WomenTopWear from "./item-detail-table/womeN-top-wear";
 import Book from "./item-detail-table/book";
 import Grocery from "./item-detail-table/grocery";
-import Chair from "./item-detail-table/chair";
+import HomeAndLiving from "./item-detail-table/homeAndLiving";
 import "./product-details.styles.scss";
 import Footwear from "./item-detail-table/footwear";
 import Axios from "axios";
@@ -82,7 +82,6 @@ class ProductDetailsPage extends React.Component {
         console.log(response.data);
         if (response.data !== "") {
           if (response.data.itemQuantity < 10) {
-            alert("Adding item to your Cart");
             this.updateCart(
               response.data.itemId,
               response.data.itemSize,
@@ -93,7 +92,6 @@ class ProductDetailsPage extends React.Component {
               "Already this item exists in cart with maximum quantity limit."
             );
         } else {
-          alert("Adding item to your Cart");
           this.addToCart();
         }
       })
@@ -114,7 +112,8 @@ class ProductDetailsPage extends React.Component {
       .catch((e) => {
         console.log(e);
       });
-    alert("Successfully added the item to your Cart.");
+    // alert("Successfully added the item to your Cart.");
+    window.location = "/cart";
   };
 
   addToCart = () => {
@@ -136,7 +135,8 @@ class ProductDetailsPage extends React.Component {
       .catch((e) => {
         console.log(e);
       });
-    alert("Successfully added the item to your Cart.");
+    // alert("Successfully added the item to your Cart.");
+    window.location = "/cart";
   };
 
   renderSwitchCategory(category) {
@@ -152,7 +152,13 @@ class ProductDetailsPage extends React.Component {
       case "jeans":
         return <WomenTopWear description={this.state.description} />;
       case "chair":
-        return <Chair description={this.state.description} />;
+        return <HomeAndLiving description={this.state.description} />;
+      case "bed":
+        return <HomeAndLiving description={this.state.description} />;
+      case "dining table":
+        return <HomeAndLiving description={this.state.description} />;
+      case "couch":
+        return <HomeAndLiving description={this.state.description} />;
       default:
         return <></>;
     }
@@ -221,7 +227,7 @@ class ProductDetailsPage extends React.Component {
                       style={{ margin: "10px" }}
                       onClick={() => this.setState({ chosenSize: s })}
                     >
-                      {s}
+                      {s.toUpperCase()}
                     </a>
                   ))}
                 </div>
