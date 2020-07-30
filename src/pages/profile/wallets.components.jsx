@@ -71,12 +71,12 @@ class Wallets extends React.Component{
                  <h5>DEFAULT CARD</h5>     
                 {this.state.wallets.map(wallet=> {
                   if(wallet.wallet_id===this.state.defaultCard)
-                  return <WalletCard emailId={this.state.email}  walletId={wallet.wallet_id} currentUserUserId={this.state.currentUserUserId} cardHolderName={wallet.cardholder_name} cardNumber={wallet.card_number} expiryDate={wallet.expiry_date} defaultCard={this.state.defaultCard}/>                
+                  return <WalletCard loadWallets={this.loadWallets}  emailId={this.state.email}  walletId={wallet.wallet_id} currentUserUserId={this.state.currentUserUserId} cardHolderName={wallet.cardholder_name} cardNumber={wallet.card_number} expiryDate={wallet.expiry_date} defaultCard={this.state.defaultCard}/>                
                 })}
               <h5>Other Cards</h5>     
               {this.state.wallets.map(wallet=>  {
                 if(wallet.wallet_id!==this.state.defaultCard)
-                return <WalletCard loadWallets={this.loadWallets} loadProfileData={this.loadProfileData} emailId={this.state.email} walletId={wallet.wallet_id} currentUserUserId={this.state.currentUserUserId} cardHolderName={wallet.cardholder_name} cardNumber={wallet.card_number} expiryDate={wallet.expiry_date} defaultCard={this.state.defaultCard}/>
+                return <WalletCard loadWallets={this.loadWallets}  emailId={this.state.email} walletId={wallet.wallet_id} currentUserUserId={this.state.currentUserUserId} cardHolderName={wallet.cardholder_name} cardNumber={wallet.card_number} expiryDate={wallet.expiry_date} defaultCard={this.state.defaultCard}/>
               })}         
             </div>
         )
