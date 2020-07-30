@@ -178,7 +178,7 @@ class Search extends React.Component {
 
   apicall = () => {
     axios
-      .get("http://localhost:8080/categories")
+      .get("http://localhost:8082/categories")
       .then((response) => {
         this.setState({
           suggestions: response.data,
