@@ -60,6 +60,13 @@ getAddressesByUserId(userId){
       updateWalletExpiry(userId,walletId,data){
         return http.put(`/wallet/${userId}/${walletId}`,data)
       }
+      
+      //update Address 
+      updateAddress(userId,addressId,data){
+        return http.put(`/address/${userId}/${addressId}`,data)
+      }
+            
+      
 
         
 }

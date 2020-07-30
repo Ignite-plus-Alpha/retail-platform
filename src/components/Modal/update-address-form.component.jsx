@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import {  Modal } from "semantic-ui-react";
 import EditIcon from '@material-ui/icons/Edit';
 import Button from '@material-ui/core/Button';
-
+import Switch from '@material-ui/core/Switch';
 import profileService from "../../services/profile-service";
 
 
@@ -44,8 +44,8 @@ close = () => this.setState({ open: false })
         country:this.state.country            
       }   
   
-      console.log(this.props.userId,"******",this.props.walletId,"************",data )
-      profileService.updateWalletExpiry(this.props.userId,this.props.walletId,data)
+      console.log(this.props.userId,"******",this.props.addressId,"************",data )
+      profileService.updateAddress(this.props.userId,this.props.addressId,data)
       .then(response=>console.log(response.data))
       .then(this.props.loadAddresses)
       .catch(e=>console.log(e))
@@ -153,33 +153,31 @@ render() {
               </div>
             </div>
             <div>Make default addresss</div>
+            <Switch
+            checked={state.checkedB}
+            onChange={this.handleToggleChange}
+            color="primary"
+            name="checkedB"
+            inputProps={{ 'aria-label': 'primary checkbox' }}
+        />
 
             <div
               className="action-buttons"
               style={{
                 display: "flex",
                 flexDirection: "row",
-                justifyContent: "space-between",
-                marginTop: "3%",
+                justifyContent: "space-between",               
               }}
             >
-              <span style={{ minWidth: "150px" }}>
-                <Button positive type='submit' value='Submit Form'>
-                  <i class="add  icon"></i>
-                  Add
+              <span style={{ minWidth: "200" }}>
+                <Button variant="contained" color="primary" type='submit' value='Submit Form' >
+                  Update
                 </Button>
               </span>
               <span>
-                {" "}
-                <button
-                  class="ui google plus button"
-                  style={{ minWidth: "120px" }}
-                  onClick={this.close}
-                >
-                  <i class="delete  icon"></i>
+                <Button variant="contained" color="secondary" onClick={this.close}>
                   Cancel
-                </button>
-                
+                </Button>
               </span>
             </div>
           </form>      </Modal>
