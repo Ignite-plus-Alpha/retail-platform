@@ -60,6 +60,7 @@ export default function Profile() {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
+
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -80,7 +81,7 @@ export default function Profile() {
         <Tab label="SaveCards" {...a11yProps(2)} />
       
       </Tabs >
-      <div className="tabs" style={{marginLeft:"5%" ,minWidth:"25%"}}>
+      <div className="tabs" style={{marginLeft:"5%" ,minWidth:"30%"}}>
       <TabPanel value={value} index={0} >
        <ProfileDetailPage/>
       </TabPanel>
@@ -90,9 +91,8 @@ export default function Profile() {
       <TabPanel value={value} index={2}>
        <Wallets/>
       </TabPanel>
-      </div>    
-
-    </div>
+      </div>  
+      </div>
   
   );
 }
